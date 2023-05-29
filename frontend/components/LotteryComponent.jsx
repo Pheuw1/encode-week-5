@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import LotteryAbi from '../contractsdata/Lottery.json';
 
-const CONTRACT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+const CONTRACT_ADDRESS = "0x133b9cFfca91E68daeDCE86f1135B5129AA5B80C";
 const CLOSING_TIME_INTERVAL = 86400; 
 
 function createWeb3Provider() {
@@ -31,7 +31,7 @@ export default function LotteryC() {
       );
       setContract(contract);
 
-      // const isOpen = await contract.betsOpen();
+      const isOpen = await contract.betsOpen();
       setBetsOpen(false);
     };
 
@@ -68,8 +68,8 @@ export default function LotteryC() {
 
   const handleCloseLottery = async () => {
     try {
-      // const transaction = await contract.closeLottery();
-      // await transaction.wait();
+      const transaction = await contract.closeLottery();
+      await transaction.wait();
       setBetsOpen(false);
       console.log('Lottery closed successfully.');
     } catch (error) {
@@ -105,9 +105,9 @@ export default function LotteryC() {
 
   const handleOpenBets = async () => {
     try {
-      // const closingTime = Math.floor(Date.now() / 1000) + CLOSING_TIME_INTERVAL;
-      // const transaction = await contract.openBets(closingTime);
-      // await transaction.wait();
+      const closingTime = Math.floor(Date.now() / 1000) + CLOSING_TIME_INTERVAL;
+      const transaction = await contract.openBets(closingTime);
+      await transaction.wait();
       setBetsOpen(true);
       console.log('Bets opened successfully.');
     } catch (error) {

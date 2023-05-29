@@ -21,6 +21,8 @@ async function initContracts() {
     ethers.utils.parseEther(BET_FEE.toFixed(18))
   );
   console.log('Contract deployed to:', contract.address);
+  //print network.name
+  console.log('Network:', (await ethers.provider.getNetwork()));
   await contract.deployed();
   const tokenAddress = await contract.paymentToken();
   const tokenFactory = await ethers.getContractFactory("LotteryToken");
