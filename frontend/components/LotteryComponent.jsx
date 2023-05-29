@@ -32,7 +32,7 @@ export default function LotteryC() {
       setContract(contract);
 
       const isOpen = await contract.betsOpen();
-      setBetsOpen(false);
+      setBetsOpen(isOpen);
     };
 
     connectToContract();
@@ -70,7 +70,8 @@ export default function LotteryC() {
     try {
       const transaction = await contract.closeLottery();
       await transaction.wait();
-      setBetsOpen(false);
+      const isOpen = await contract.betsOpen();
+      setBetsOpen(isOpen);
       console.log('Lottery closed successfully.');
     } catch (error) {
       console.error('Error closing lottery:', error);
