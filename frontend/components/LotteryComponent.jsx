@@ -3,7 +3,7 @@ import { ethers } from 'ethers';
 import LotteryAbi from '../contractsdata/Lottery.json';
 
 const CONTRACT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
-const CLOSING_TIME_INTERVAL = 86400; // 24 hours
+const CLOSING_TIME_INTERVAL = 86400; 
 
 function createWeb3Provider() {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
